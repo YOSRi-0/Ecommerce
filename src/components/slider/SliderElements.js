@@ -6,6 +6,7 @@ export const Container = styled.div`
     display: flex;
     position: relative;
     color: #343a40;
+    overflow: hidden;
 `;
 
 export const Arrow = styled.div`
@@ -22,6 +23,7 @@ export const Arrow = styled.div`
     justify-content: center;
 
     position: absolute;
+    z-index: 10;
     top: 0;
     bottom: 0;
     left: ${(props) => props.direction === 'left' && '10px'};
@@ -31,20 +33,29 @@ export const Arrow = styled.div`
     transition: all 0.2s ease-in-out;
 
     &:hover {
-        background-color: #343a40;
-        color: #f8f9fa;
+        background-color: #dee2e6;
+        box-shadow: 0 3px 5px #0000001a;
         transition: all 0.2s ease-in-out;
     }
 `;
 
 export const Wrapper = styled.div`
-    width: 100%;
+    display: flex;
+    height: 100%;
 `;
 
 export const Slide = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100vh;
+    width: 100vw;
+
+    transform: translateX(${(props) => props.index * -100}vw);
+
+    background-color: ${(props) => props.bg};
+
+    transition: all 0.5s ease-in-out;
 `;
 
 export const ImgContainer = styled.div`

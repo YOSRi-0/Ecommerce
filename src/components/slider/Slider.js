@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RiArrowRightSFill, RiArrowLeftSFill } from 'react-icons/ri';
 import {
     Arrow,
@@ -12,29 +12,56 @@ import {
     Description,
     Button,
 } from './SliderElements';
+import { sliderItems } from '../../data';
 
 export const Slider = () => {
+    const [sliderIndex, setSliderIndex] = useState(0);
+
+    const handleClick = (direction) => {
+        if (direction === 'left') {
+            if (sliderIndex === 0) {
+                setSliderIndex(sliderItems.length - 1);
+            } else {
+                setSliderIndex(sliderIndex - 1);
+            }
+        }
+        if (direction === 'right') {
+            if (sliderIndex === sliderItems.length - 1) {
+                setSliderIndex(0);
+            } else {
+                setSliderIndex(sliderIndex + 1);
+            }
+        }
+    };
+
     return (
         <Container>
-            <Arrow direction="left">
+            <Arrow direction="left" onClick={() => handleClick('left')}>
                 <RiArrowLeftSFill></RiArrowLeftSFill>
             </Arrow>
             <Wrapper>
-                <Slide>
-                    <ImgContainer>
-                        <Image src="https://i.ibb.co/TRFxvsv/cover-5.png" />
-                    </ImgContainer>
-                    <TextContainer>
-                        <Title>summer sale</Title>
-                        <Description>
-                            don’t compromise our style! get flat 30% off new
-                            arrivals
-                        </Description>
-                        <Button>shop now</Button>
-                    </TextContainer>
-                </Slide>
+                {sliderItems.map((sliderItem) => {
+                    return (
+                        <Slide
+                            key={sliderItem.id}
+                            index={sliderIndex}
+                            bg={sliderItem.bg}
+                        >
+                            <ImgContainer>
+                                <Image src={sliderItem.img} />
+                            </ImgContainer>
+                            <TextContainer>
+                                <Title>{sliderItem.title}</Title>
+                                <Description>
+                                    {sliderItem.description}
+                                </Description>
+                                <Button>shop now</Button>
+                            </TextContainer>
+                        </Slide>
+                    );
+                })}
             </Wrapper>
-            <Arrow direction="right">
+            <Arrow direction="right" onClick={() => handleClick('right')}>
                 <RiArrowRightSFill></RiArrowRightSFill>
             </Arrow>
         </Container>
