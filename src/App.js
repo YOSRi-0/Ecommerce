@@ -10,11 +10,11 @@ function App() {
         <Router>
             <Announcement />
             <NavBar />
-            {/* <Switch>
+            <Switch>
                 <Route path="/">
                     <Home />;
                 </Route>
-            </Switch> */}
+            </Switch>
         </Router>
     );
 }
