@@ -9,8 +9,12 @@ export const Home = () => {
         <>
             <Slider />
             <Categories />
-            <Products />
-            <Newsletter />
+            <Products
+                bg="#e9ecef"
+                filter="none"
+                title="Popular Product"
+                align="center"
+            />
         </>
     );
 };

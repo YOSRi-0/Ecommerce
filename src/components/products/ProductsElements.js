@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    background-color: #e9ecef;
-    text-align: center;
+    background-color: ${(props) => props.bg || 'transparent'};
+    text-align: ${(props) => props.align};
     padding: 9rem 5%;
 `;
 
@@ -21,4 +21,6 @@ export const Title = styled.h1`
     font-weight: 300;
     margin-bottom: 4rem;
     color: #343a40;
+    max-width: 1600px;
+    margin: 0 auto 3rem;
 `;

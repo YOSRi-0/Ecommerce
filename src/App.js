@@ -5,6 +5,9 @@ import { NavBar } from './components/navbar/NavBar';
 import { Announcement } from './components/announcement/Announcement';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Footer } from './components/footer/Footer';
+import { ProductsList } from './pages/products/ProductsList';
+import { Product } from './pages/products/Product';
+import { Newsletter } from './components/newsletter/Newsletter';
 
 function App() {
     return (
@@ -13,9 +16,12 @@ function App() {
             <NavBar />
             <Switch>
                 <Route path="/">
-                    <Home />;
+                    {/* <ProductsList />; */}
+                    {/* <Home/> */}
+                    <Product />
                 </Route>
             </Switch>
+            <Newsletter />
             <Footer />
         </Router>
     );

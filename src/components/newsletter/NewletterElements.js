@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 9rem 5%;
+    padding: 4rem 5%;
     margin: 0 auto;
     text-align: center;
 
