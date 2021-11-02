@@ -14,7 +14,7 @@ export const Arrow = styled.div`
     height: 50px;
     font-size: 2rem;
 
-    background-color: #f8f9fa;
+    background-color: transparent;
     border-radius: 50%;
     cursor: pointer;
 
@@ -87,27 +87,4 @@ export const Description = styled.p`
     font-weight: 500;
 
     margin: 2rem 0;
-`;
-
-export const Button = styled.button`
-    text-transform: uppercase;
-    font-size: 1.25rem;
-    font-family: inherit;
-    font-weight: 500;
-    color: #e9ecef;
-    background-color: #343a40;
-    border: 2px solid #343a40;
-    border-radius: 2px;
-    cursor: pointer;
-
-    padding: 1rem 2rem;
-
-    transition: all 0.2s ease-in-out;
-
-    &:hover {
-        transition: all 0.2s ease-in-out;
-        color: #343a40;
-        background-color: #e9ecef;
-        border: 2px solid #343a40;
-    }
 `;

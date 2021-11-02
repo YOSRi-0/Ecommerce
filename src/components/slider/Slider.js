@@ -10,8 +10,8 @@ import {
     Image,
     Title,
     Description,
-    Button,
 } from './SliderElements';
+import { Button } from '../buttons/Button';
 import { sliderItems } from '../../data';
 
 export const Slider = () => {
@@ -55,7 +55,7 @@ export const Slider = () => {
                                 <Description>
                                     {sliderItem.description}
                                 </Description>
-                                <Button>shop now</Button>
+                                <Button theme="dark">shop now</Button>
                             </TextContainer>
                         </Slide>
                     );
