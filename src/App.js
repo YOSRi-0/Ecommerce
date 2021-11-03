@@ -8,6 +8,7 @@ import { Footer } from './components/footer/Footer';
 import { ProductsList } from './pages/products/ProductsList';
 import { Product } from './pages/products/Product';
 import { Newsletter } from './components/newsletter/Newsletter';
+import { Register } from './pages/register/Register';
 
 function App() {
     return (
@@ -15,6 +16,11 @@ function App() {
             <Announcement />
             <NavBar />
             <Switch>
+                <Route path="/register">
+                    {/* <ProductsList />; */}
+                    {/* <Home/> */}
+                    <Register />
+                </Route>
                 <Route path="/">
                     {/* <ProductsList />; */}
                     {/* <Home/> */}

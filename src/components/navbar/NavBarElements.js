@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -59,9 +60,11 @@ export const Center = styled.div`
     text-align: center;
 `;
 
-export const Logo = styled.h1`
+export const Logo = styled(Link)`
     font-size: 2rem;
     font-family: 'Abril Fatface';
+    text-decoration: none;
+    color: inherit;
 `;
 
 export const Right = styled.div`
@@ -71,7 +74,7 @@ export const Right = styled.div`
     align-items: center;
 `;
 
-export const MenuItem = styled.a`
+export const MenuItem = styled(Link)`
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 500;

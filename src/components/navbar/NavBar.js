@@ -2,6 +2,7 @@ import React from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { IoCaretDown } from 'react-icons/io5';
 import { RiShoppingCart2Line } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 import {
     Container,
     Wrapper,
@@ -34,10 +35,10 @@ export const NavBar = () => {
                     </SearchContainer>
                 </Left>
                 <Center>
-                    <Logo>YOUYOU.</Logo>
+                    <Logo to="/">YOUYOU.</Logo>
                 </Center>
                 <Right>
-                    <MenuItem>Register</MenuItem>
+                    <MenuItem to="/register">Register</MenuItem>
                     <MenuItem>Login</MenuItem>
                     <CartContainer>
                         <RiShoppingCart2Line></RiShoppingCart2Line>
