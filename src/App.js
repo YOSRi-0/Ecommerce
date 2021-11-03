@@ -10,6 +10,7 @@ import { Product } from './pages/products/Product';
 import { Newsletter } from './components/newsletter/Newsletter';
 import { Register } from './pages/register/Register';
 import { Login } from './pages/login/Login';
+import { Cart } from './pages/cart/Cart';
 
 function App() {
     return (
@@ -17,23 +18,26 @@ function App() {
             <Announcement />
             <NavBar />
             <Switch>
+                <Route path="/" exact>
+                    <Home />
+                </Route>
                 <Route path="/login">
-                    {/* <ProductsList />; */}
-                    {/* <Home/> */}
                     <Login />
                 </Route>
                 <Route path="/register">
-                    {/* <ProductsList />; */}
-                    {/* <Home/> */}
                     <Register />
                 </Route>
-                <Route path="/">
-                    {/* <ProductsList />; */}
-                    {/* <Home/> */}
+                <Route path="/products">
+                    <ProductsList />
+                </Route>
+                <Route path="/products/1">
                     <Product />
                 </Route>
+                <Route path="/cart">
+                    <Cart />
+                </Route>
             </Switch>
-            <Newsletter />
+            <Newsletter bg="#e9ecef" />
             <Footer />
         </Router>
     );

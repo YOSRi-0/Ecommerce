@@ -3,9 +3,9 @@ import { categories } from '../../data';
 import { Container, Wrapper, Title } from './CategoriesElements';
 import { CategoryItem } from './CategoryItem';
 
-export const Categories = () => {
+export const Categories = (props) => {
     return (
-        <Container>
+        <Container bg={props.bg}>
             <Title>Categories</Title>
             <Wrapper>
                 {categories.map((categoryItem) => (

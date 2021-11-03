@@ -8,13 +8,8 @@ export const Home = () => {
     return (
         <>
             <Slider />
-            <Categories />
-            <Products
-                bg="#e9ecef"
-                filter="none"
-                title="Popular Product"
-                align="center"
-            />
+            <Categories bg="#e9ecef" />
+            <Products filter="none" title="Popular Product" align="center" />
         </>
     );
 };

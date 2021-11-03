@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
     background-color: ${(props) => props.bg || 'transparent'};
     text-align: ${(props) => props.align};
-    padding: 9rem 5%;
+    padding: 4rem 5%;
 `;
 
 export const Wrapper = styled.div`

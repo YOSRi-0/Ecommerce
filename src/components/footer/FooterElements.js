@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    background-color: #e9ecef;
+    background-color: ${(props) => props.bg || 'transparent'};
 `;
 
 export const Wrapper = styled.div`

@@ -39,7 +39,7 @@ export const NavBar = () => {
                 <Right>
                     <MenuItem to="/register">Register</MenuItem>
                     <MenuItem to="/login">Login</MenuItem>
-                    <CartContainer>
+                    <CartContainer to="/cart">
                         <RiShoppingCart2Line></RiShoppingCart2Line>
                     </CartContainer>
                 </Right>

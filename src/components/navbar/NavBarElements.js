@@ -87,9 +87,11 @@ export const MenuItem = styled(Link)`
     }
 `;
 
-export const CartContainer = styled.div`
+export const CartContainer = styled(Link)`
     font-size: 1.5rem;
     cursor: pointer;
+    text-decoration: none;
+    color: inherit;
 
     &:hover {
         transform: scale(1.1);

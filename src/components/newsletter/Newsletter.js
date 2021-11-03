@@ -10,9 +10,9 @@ import {
     Wrapper,
 } from './NewletterElements';
 
-export const Newsletter = () => {
+export const Newsletter = (props) => {
     return (
-        <Container>
+        <Container bg={props.bg}>
             <Wrapper>
                 <Title>Newsletter</Title>
                 <Description>

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+    background-color: ${(props) => props.bg || 'transparent'};
+`;
 
 export const Wrapper = styled.div`
     display: flex;
@@ -43,6 +45,7 @@ export const Input = styled.input`
     outline: none;
     border: none;
     width: 80%;
+    background-color: transparent;
 
     &::placeholder {
         color: #343a40;
