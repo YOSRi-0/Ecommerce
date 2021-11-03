@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mobile } from '../../responsive';
 
 export const Container = styled.div`
     padding: 0.5rem;
@@ -8,4 +9,6 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    ${mobile({ textAlign: 'center', fontSize: '.9rem' })}
 `;

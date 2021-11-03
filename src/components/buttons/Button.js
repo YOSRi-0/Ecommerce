@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mobile } from '../../responsive';
 
 export const Button = styled.button`
     text-transform: uppercase;
@@ -37,4 +38,6 @@ export const Button = styled.button`
             props.theme === 'dark' ? '#343a40' : '#e9ecef'}; */
         }
     }
+
+    ${mobile({ fontSize: '1rem', fontWeight: '500' })}
 `;

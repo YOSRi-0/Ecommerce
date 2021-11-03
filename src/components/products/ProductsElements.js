@@ -1,15 +1,18 @@
 import styled from 'styled-components';
+import { mobile } from '../../responsive';
 
 export const Container = styled.div`
     background-color: ${(props) => props.bg || 'transparent'};
     text-align: ${(props) => props.align};
     padding: 4rem 5%;
+
+    ${mobile({ padding: '4rem 3.125%' })}
 `;
 
 export const Wrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     margin: 0 auto;
 
@@ -23,4 +26,6 @@ export const Title = styled.h1`
     color: #343a40;
     max-width: 1600px;
     margin: 0 auto 3rem;
+
+    ${mobile({ fontSize: '2rem' })}
 `;

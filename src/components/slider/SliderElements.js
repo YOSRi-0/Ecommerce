@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mobile } from '../../responsive';
 
 export const Container = styled.div`
     width: 100%;
@@ -7,6 +8,8 @@ export const Container = styled.div`
     position: relative;
     color: #343a40;
     overflow: hidden;
+
+    ${mobile({ display: 'none' })}
 `;
 
 export const Arrow = styled.div`

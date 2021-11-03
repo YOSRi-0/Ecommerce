@@ -1,18 +1,21 @@
 import styled from 'styled-components';
+import { mobile } from '../../responsive';
 
 export const Container = styled.div`
     flex: 1;
     margin: 0.25rem;
     width: auto;
-    min-width: 400px;
-    max-height: 600px;
-    height: 50vh;
-    min-height: 400px;
+    width: 350px;
+    min-width: 350px;
+    height: 350px;
+    min-height: 350px;
 
     display: flex;
     overflow: hidden;
 
     position: relative;
+
+    ${mobile({ minWidth: '300px' })}
 `;
 
 export const Image = styled.img`
@@ -22,7 +25,7 @@ export const Image = styled.img`
 
     transition: all 0.25s ease-in-out;
 
-    ${Container}:hover & {
+    ${Container}:hover &, ${Container}:focus {
         transform: scale(1.05);
     }
 `;
@@ -41,10 +44,16 @@ export const Informations = styled.div`
 
     transition: all 0.25s ease-in-out;
 
-    ${Container}:hover & {
+    ${Container}:hover & ${Container}:focus {
         background-color: rgba(52, 58, 64, 0.5);
         opacity: 1;
     }
+
+    ${mobile({
+        display: 'flex',
+        opacity: '1',
+        backgroundColor: 'rgba(52, 58, 64, 0.5)',
+    })}
 `;
 
 export const Icon = styled.div`

@@ -1,8 +1,12 @@
 import styled from 'styled-components';
+import { mobile } from '../../responsive';
 
 export const Container = styled.div`
     flex: 1;
     margin: 0.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     position: relative;
 
@@ -20,6 +24,8 @@ export const Image = styled.img`
     ${Container}:hover & {
         transform: scale(1.05);
     }
+
+    ${mobile({ margin: '0 auto' })}
 `;
 
 export const Informations = styled.div`
@@ -46,6 +52,12 @@ export const Informations = styled.div`
         background-color: rgba(52, 58, 64, 0.5);
         opacity: 1;
     }
+
+    ${mobile({
+        display: 'flex',
+        opacity: '1',
+        backgroundColor: 'rgba(52, 58, 64, 0.5)',
+    })}
 `;
 
 export const Title = styled.h2`
