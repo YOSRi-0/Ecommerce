@@ -5,6 +5,7 @@ export const Container = styled.div`
     height: 80px;
     background-color: #dee2e6;
     color: #343a40;
+    padding: 0 5%;
 `;
 
 export const Wrapper = styled.div`
@@ -12,7 +13,9 @@ export const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem 2rem;
+
+    max-width: 1600px;
+    margin: 0 auto;
 `;
 
 export const Left = styled.div`
