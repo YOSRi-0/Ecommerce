@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link as RouterLink } from 'react-router-dom';
 
 export const Container = styled.div`
     width: 100%;
@@ -51,16 +52,15 @@ export const Input = styled.input`
     }
 `;
 
-export const Agreement = styled.p`
-    font-size: 1rem;
+export const Link = styled(RouterLink)`
+    color: inherit;
     font-weight: 500;
-
-    min-width: 300px;
+    margin-top: 1.25em;
+    font-size: 1rem;
 `;
 
 export const Button = styled.button`
     padding: 0.75em 1.25em;
-    margin-top: 1em;
     width: 100%;
 
     outline: none;
