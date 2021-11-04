@@ -15,7 +15,7 @@ export const Container = styled.div`
 
     position: relative;
 
-    ${mobile({ minWidth: '300px' })}
+    ${mobile({ minWidth: '300px', maxHeight: '200px'  })}
 `;
 
 export const Image = styled.img`
@@ -25,9 +25,10 @@ export const Image = styled.img`
 
     transition: all 0.25s ease-in-out;
 
-    ${Container}:hover &, ${Container}:focus {
+    ${Container}:hover & {
         transform: scale(1.05);
     }
+
 `;
 
 export const Informations = styled.div`
@@ -44,16 +45,11 @@ export const Informations = styled.div`
 
     transition: all 0.25s ease-in-out;
 
-    ${Container}:hover & ${Container}:focus {
+    ${Container}:hover & {
         background-color: rgba(52, 58, 64, 0.5);
         opacity: 1;
     }
 
-    ${mobile({
-        display: 'flex',
-        opacity: '1',
-        backgroundColor: 'rgba(52, 58, 64, 0.5)',
-    })}
 `;
 
 export const Icon = styled.div`

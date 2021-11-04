@@ -13,6 +13,7 @@ export const Container = styled.div`
     min-width: 300px;
 
     overflow: hidden;
+
 `;
 
 export const Image = styled.img`
@@ -25,7 +26,7 @@ export const Image = styled.img`
         transform: scale(1.05);
     }
 
-    ${mobile({ margin: '0 auto' })}
+    ${mobile({ margin: '0 auto',maxHeight:'200px'})}
 `;
 
 export const Informations = styled.div`
@@ -53,11 +54,6 @@ export const Informations = styled.div`
         opacity: 1;
     }
 
-    ${mobile({
-        display: 'flex',
-        opacity: '1',
-        backgroundColor: 'rgba(52, 58, 64, 0.5)',
-    })}
 `;
 
 export const Title = styled.h2`
