@@ -9,7 +9,6 @@ export const Products = (props) => {
     if (props.filter !== undefined) {
         filter = props.filter;
     }
-    console.log(props.align);
     return (
         <Container>
             <Title align={props.align}>{props.title}</Title>

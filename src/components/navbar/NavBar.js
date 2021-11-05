@@ -22,14 +22,13 @@ import { useState } from "react";
 
 export const NavBar = () => {
 	const [toggleNav, setToggleNab] = useState(false);
-	console.log(toggleNav);
 	const toggle = () => {
 		setToggleNab(!toggleNav);
 	};
 	return (
-		<Container isOpen={toggleNav}>
+		<Container isopen={toggleNav}>
 			<Wrapper>
-				<Left isOpen={toggleNav}>
+				<Left isopen={toggleNav}>
 					<Language>
 						EN
 						<IoCaretDownContainer>
@@ -41,13 +40,13 @@ export const NavBar = () => {
 						<BiSearch></BiSearch>
 					</SearchContainer>
 				</Left>
-				<Center isOpen={toggleNav}>
+				<Center isopen={toggleNav}>
 					<Logo to="/">YOUYOU.</Logo>
 					<Hamburger onClick={toggle}>
-						<BarsIcon isOpen={toggleNav} />
+						<BarsIcon />
 					</Hamburger>
 				</Center>
-				<Right isOpen={toggleNav}>
+				<Right isopen={toggleNav}>
 					<MenuItem to="/register">
 						Register
 					</MenuItem>

@@ -10,8 +10,10 @@ export const Container = styled.div`
 	padding: 0 5%;
 	display: flex;
 
+	transition: height 0.5s ease-in-out;
+
 	${mobile({
-		height: (props) => (props.isOpen ? "100vh" : "80px"),
+		height: (props) => (props.isopen ? "100vh" : "80px"),
 	})};
 `;
 
@@ -33,13 +35,16 @@ export const Wrapper = styled.div`
 export const Left = styled.div`
 	flex: 1;
 	display: flex;
+	transition: all 0.5s ease-in-out 0.25s;
 
 	${mobile({
 		maxHeight: "50px",
 		flex: "0",
 		margin: "2rem 0",
 		order: "2",
-		display: (props) => (props.isOpen ? "flex" : "none"),
+		display: (props) => (props.isopen ? "flex" : "none"),
+		transition: "all 0.5s ease-in-out",
+		opacity: (props) => (props.isopen ? "1" : "0"),
 	})};
 `;
 
@@ -106,13 +111,16 @@ export const Right = styled.div`
 	justify-content: flex-end;
 	align-items: center;
 
+	transition: all 0.5s ease-in-out 0.25s;
+
 	${mobile({
 		flex: "0",
 		maxHeight: "100px",
 		flexDirection: "column",
 		justifyContent: "space-between",
 		order: 4,
-		display: (props) => (props.isOpen ? "flex" : "none"),
+		display: (props) => (props.isopen ? "flex" : "none"),
+		opacity: (props) => (props.isopen ? "1" : "0"),
 	})};
 `;
 
@@ -145,8 +153,9 @@ export const Hamburger = styled.div`
 	display: none;
 
 	${mobile({
-		height: "50px",
-		width: "50px",
+		height: "30px",
+		width: "30px",
+		margin: "auto 0",
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",
@@ -156,4 +165,7 @@ export const Hamburger = styled.div`
 	})}
 `;
 
-export const BarsIcon = styled(FaBars)``;
+export const BarsIcon = styled(FaBars)`
+	width: 100%;
+	height: 100%;
+`;
