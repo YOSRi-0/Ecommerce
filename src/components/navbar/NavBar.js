@@ -22,6 +22,9 @@ import { useState } from "react";
 
 export const NavBar = () => {
 	const [toggleNav, setToggleNab] = useState(false);
+	const resetToggle = () => {
+		setToggleNab(false);
+	};
 	const toggle = () => {
 		setToggleNab(!toggleNav);
 	};
@@ -41,17 +44,30 @@ export const NavBar = () => {
 					</SearchContainer>
 				</Left>
 				<Center isopen={toggleNav}>
-					<Logo to="/">YOUYOU.</Logo>
+					<Logo to="/" onClick={resetToggle}>
+						YOUYOU.
+					</Logo>
 					<Hamburger onClick={toggle}>
 						<BarsIcon />
 					</Hamburger>
 				</Center>
 				<Right isopen={toggleNav}>
-					<MenuItem to="/register">
+					<MenuItem
+						to="/register"
+						onClick={toggle}
+					>
 						Register
 					</MenuItem>
-					<MenuItem to="/login">Login</MenuItem>
-					<CartContainer to="/cart">
+					<MenuItem
+						to="/login"
+						onClick={resetToggle}
+					>
+						Login
+					</MenuItem>
+					<CartContainer
+						to="/cart"
+						onClick={resetToggle}
+					>
 						<RiShoppingCart2Line></RiShoppingCart2Line>
 					</CartContainer>
 				</Right>
