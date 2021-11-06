@@ -67,7 +67,7 @@ User.updateByUsername = (username, user, result) => {
 				return;
 			}
 
-			if (res.affectedRows == 0) {
+			if (res.affectedRows === 0) {
 				result({ kind: "not_found" }, null);
 				return;
 			}
@@ -89,7 +89,7 @@ User.remove = (username, result) => {
 				return;
 			}
 
-			if (res.affectedRows == 0) {
+			if (res.affectedRows === 0) {
 				result({ kind: "not_found" }, null);
 				return;
 			}
@@ -109,7 +109,7 @@ User.removeAll = (result) => {
 		}
 
 		console.log(`deleted ${res.affectedRows} users`);
-		return null, res;
+			result(null, res);
 	});
 };
 
