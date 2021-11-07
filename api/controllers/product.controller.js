@@ -18,6 +18,7 @@ exports.create = (req, res) => {
         createdat: new Date(),
     });
 
+    // Save product in the db
     Product.create(product, (err, data) => {
         if (err) {
             res.status(500).send({
@@ -29,7 +30,6 @@ exports.create = (req, res) => {
             res.send(data);
         }
     });
-    // Save product in the db
 };
 
 // Get all Products
@@ -142,7 +142,7 @@ exports.deleteAll = (req, res) => {
 			res.status(500).send({
 				message:
 					err.message ||
-					"some error occured while remove all products",
+					"some error occured while removing all products",
 			});
 		else
 			res.send({

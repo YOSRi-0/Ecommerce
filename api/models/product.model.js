@@ -40,10 +40,10 @@ Product.findById = (id, result) => {
     });
 };
 
-Product.findAllByCategory = (CategoryId, result) => {
+Product.findAllByCategory = (categoryId, result) => {
     sql.query(
         "SELECT p.* FROM product p INNER JOIN product_category pc ON pc.id_product = p.id_product WHERE pc.id_category = ?",
-        CategooryId,
+        categoryId,
         (err, res) => {
             if (err) {
                 console.log("error: ", err);

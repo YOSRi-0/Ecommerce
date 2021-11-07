@@ -11,8 +11,6 @@ import { Register } from "./pages/register/Register";
 import { Login } from "./pages/login/Login";
 import { Cart } from "./pages/cart/Cart";
 
-useState
-
 function App() {
     return (
         <Router>
