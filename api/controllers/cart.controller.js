@@ -1,10 +1,10 @@
-const Cart = require("../models/cart.model");
+const Cart = require('../models/cart.model');
 
-// Create and save new product
+// Create and save new cart
 exports.create = (req, res) => {
     // Validate request
     if (!req.body) {
-        res.status(400).send({ message: "content can not be empty" });
+        res.status(400).send({ message: 'content can not be empty' });
     }
 
     // Create a cart
@@ -17,7 +17,7 @@ exports.create = (req, res) => {
         if (err) {
             res.status(500).send({
                 message:
-                    err.message || "Some error occured while creating the cart",
+                    err.message || 'Some error occured while creating the cart',
             });
         } else {
             res.send(data);
@@ -30,13 +30,13 @@ exports.findByUsername = (req, res) => {
     const username = req.params.username;
     Cart.findByUsername(username, (err, data) => {
         if (err) {
-            if (err.kind === "not_found") {
+            if (err.kind === 'not_found') {
                 res.status(404).send({
                     message: `not found product for cart of user: ${username}`,
                 });
             } else {
                 res.status(500).send({
-                    message: "Error retrieving cart for user " + username,
+                    message: 'Error retrieving cart for user ' + username,
                 });
             }
         } else {
@@ -49,14 +49,14 @@ exports.findByUsername = (req, res) => {
 exports.addToCart = (req, res) => {
     // Validate request
     if (!req.body) {
-        res.status(400).send({ message: "content can not be empty" });
+        res.status(400).send({ message: 'content can not be empty' });
     }
 
     const { username, productId, cartId } = req.body;
     Cart.addToCart(username, productId, cartId, (err, data) => {
         if (err) {
             res.status(500).send({
-                message: err.message || "Some error occured while add to cart",
+                message: err.message || 'Some error occured while add to cart',
             });
         } else {
             res.send(data);
@@ -68,22 +68,22 @@ exports.addToCart = (req, res) => {
 exports.deleteProductFromCart = (req, res) => {
     // Validate request
     if (!req.body) {
-        res.status(400).send({ message: "content cannot be empty" });
+        res.status(400).send({ message: 'content cannot be empty' });
     }
     const { productId, cartId } = req.body;
     Cart.removeProductFromCart(productId, cartId, (err, data) => {
         if (err) {
-            if (err.kind === "not_found") {
+            if (err.kind === 'not_found') {
                 res.status(400).send({
                     message:
                         err.message ||
-                        "some error occured while removing the product",
+                        'some error occured while removing the product',
                 });
             } else {
                 res.status(500).send({
                     message:
                         err.message ||
-                        "Some error occured while removing from cart",
+                        'Some error occured while removing from cart',
                 });
             }
         } else {
@@ -102,7 +102,7 @@ exports.deleteAll = (req, res) => {
             res.status(500).send({
                 message:
                     err.message ||
-                    "some error occured while removing all products from cart",
+                    'some error occured while removing all products from cart',
             });
         else
             res.send({
