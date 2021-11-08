@@ -1,18 +1,18 @@
 module.exports = (app) => {
-    const cart = require("../controllers/cart.controller.js");
+    const cart = require('../controllers/cart.controller.js');
 
     // Create a new Cart
-    app.post("/cart", cart.create);
+    app.post('/cart', cart.create);
 
     // Get cart
-    app.get("/cart/:username", cart.findByUsername);
+    app.get('/cart/:id', cart.findByUserId);
 
     // Add To cart
-    app.post("/cart/add", cart.addToCart);
+    app.post('/cart/add', cart.addToCart);
 
     // Delete from cart
-    app.delete("/cart/delete", cart.deleteProductFromCart);
+    app.delete('/cart/delete', cart.deleteProductFromCart);
 
     // Delete all products from cart
-    app.delete("/cart/delete/all/:id", cart.deleteAll);
+    app.delete('/cart/delete/all/:id', cart.deleteAll);
 };

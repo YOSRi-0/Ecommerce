@@ -1,116 +1,129 @@
-const sql = require("./db.js");
+const sql = require('./db.js');
 
 const User = function (user) {
-	this.username = user.username;
-	this.email = user.email;
-	this.password = user.password;
-	this.isadmin = user.isadmin;
-	this.createdat = user.createdat;
+    this.username = user.username;
+    this.email = user.email;
+    this.password = user.password;
+    this.isadmin = user.isadmin;
+    this.createdat = user.createdat;
 };
 
 User.create = (newUser, result) => {
-	sql.query("INSERT INTO users SET ?", newUser, (err, res) => {
-		if (err) {
-			console.log("error: ", err);
-			result(err, null);
-			return;
-		}
+    sql.query('INSERT INTO users SET ?', newUser, (err, res) => {
+        if (err) {
+            console.log('error: ', err);
+            result(err, null);
+            return;
+        }
 
-		console.log("created user", { ...newUser });
-		result(null, { ...newUser });
-	});
+        console.log('created user', { ...newUser });
+        result(null, { ...newUser });
+    });
 };
 
-User.findByUsername = (username, result) => {
-	sql.query(
-		"SELECT * FROM users WHERE username = ? ",
-		username,
-		(err, res) => {
-			if (err) {
-				console.log("error", err);
-				result(err, null);
-				return;
-			}
+User.findById = (id, result) => {
+    sql.query('SELECT * FROM users WHERE id_user = ? ', id, (err, res) => {
+        if (err) {
+            console.log('error', err);
+            result(err, null);
+            return;
+        }
 
-			if (res.length) {
-				console.log("found user", res[0]);
-				result(null, res[0]);
-				return;
-			}
+        if (res.length) {
+            console.log('found user', res[0]);
+            result(null, res[0]);
+            return;
+        }
 
-			result({ kind: "not_found" }, null);
-		}
-	);
+        result({ kind: 'not_found' }, null);
+    });
 };
 
 User.getAll = (result) => {
-	sql.query("SELECT * FROM users", (err, res) => {
-		if (err) {
-			console.log("error: ", err);
-			result(err, null);
-			return;
-		}
+    sql.query('SELECT * FROM users', (err, res) => {
+        if (err) {
+            console.log('error: ', err);
+            result(err, null);
+            return;
+        }
 
-		console.log("users: ", res);
-		result(null, res);
-	});
+        console.log('users: ', res);
+        result(null, res);
+    });
 };
 
-User.updateByUsername = (username, user, result) => {
-	sql.query(
-		"UPDATE users SET email = ? , password = ? WHERE username = ?",
-		[user.email, user.password, username],
-		(err, res) => {
-			if (err) {
-				console.log("error: ", err);
-				result(null, err);
-				return;
-			}
+User.updateById = (id, user, result) => {
+    sql.query(
+        'UPDATE users SET email = ? , password = ? WHERE id_user  = ?',
+        [user.email, user.password, id],
+        (err, res) => {
+            if (err) {
+                console.log('error: ', err);
+                result(null, err);
+                return;
+            }
 
-			if (res.affectedRows === 0) {
-				result({ kind: "not_found" }, null);
-				return;
-			}
+            if (res.affectedRows === 0) {
+                result({ kind: 'not_found' }, null);
+                return;
+            }
 
-			console.log("updated user: ", { username, ...user });
-			result(null, { username, ...user });
-		}
-	);
+            console.log('updated user: ', { id, ...user });
+            result(null, { id, ...user });
+        }
+    );
 };
 
-User.remove = (username, result) => {
-	sql.query(
-		"DELETE FROM users WHERE username = ? ",
-		username,
-		(err, res) => {
-			if (err) {
-				console.log("error: ", err);
-				result(err, null);
-				return;
-			}
+User.remove = (id, result) => {
+    sql.query('DELETE FROM users WHERE id_user = ? ', id, (err, res) => {
+        if (err) {
+            console.log('error: ', err);
+            result(err, null);
+            return;
+        }
 
-			if (res.affectedRows === 0) {
-				result({ kind: "not_found" }, null);
-				return;
-			}
+        if (res.affectedRows === 0) {
+            result({ kind: 'not_found' }, null);
+            return;
+        }
 
-			console.log("deleted user with username", username);
-			result(null, res);
-		}
-	);
+        console.log('deleted user with id', id);
+        result(null, res);
+    });
 };
 
 User.removeAll = (result) => {
-	sql.query("DELETE FROM users", (err, res) => {
-		if (err) {
-			console.log("error: ", err);
-			result(err, null);
-			return;
-		}
+    sql.query('DELETE FROM users', (err, res) => {
+        if (err) {
+            console.log('error: ', err);
+            result(err, null);
+            return;
+        }
 
-		console.log(`deleted ${res.affectedRows} users`);
-			result(null, res);
-	});
+        console.log(`deleted ${res.affectedRows} users`);
+        result(null, res);
+    });
+};
+
+User.login = (username, result) => {
+    sql.query(
+        'SELECT * FROM users WHERE username = ? ',
+        username,
+        (err, res) => {
+            if (err) {
+                console.log('Error: ', err);
+                result(err, null);
+                return;
+            }
+            if (!res) {
+                console.log(`wrong credentials `);
+                result({ kind: 'wrong credentials' }, null);
+                return;
+            }
+            console.log(res[0]);
+            result(null, res[0]);
+        }
+    );
 };
 
 module.exports = User;

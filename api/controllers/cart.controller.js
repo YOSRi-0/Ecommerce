@@ -9,7 +9,7 @@ exports.create = (req, res) => {
 
     // Create a cart
     const cart = new Cart({
-        username: req.body.username,
+        userId: req.body.userId,
     });
 
     // Save cart in the db
@@ -25,18 +25,18 @@ exports.create = (req, res) => {
     });
 };
 
-// Get one cart with username
-exports.findByUsername = (req, res) => {
-    const username = req.params.username;
-    Cart.findByUsername(username, (err, data) => {
+// Get one cart with user id
+exports.findByUserId = (req, res) => {
+    const userId = req.params.userId;
+    Cart.findByUserId(userId, (err, data) => {
         if (err) {
             if (err.kind === 'not_found') {
                 res.status(404).send({
-                    message: `not found product for cart of user: ${username}`,
+                    message: `not found product for cart of user: ${userId}`,
                 });
             } else {
                 res.status(500).send({
-                    message: 'Error retrieving cart for user ' + username,
+                    message: 'Error retrieving cart for user ' + userId,
                 });
             }
         } else {
@@ -52,8 +52,8 @@ exports.addToCart = (req, res) => {
         res.status(400).send({ message: 'content can not be empty' });
     }
 
-    const { username, productId, cartId } = req.body;
-    Cart.addToCart(username, productId, cartId, (err, data) => {
+    const { userId, productId, cartId } = req.body;
+    Cart.addToCart(userId, productId, cartId, (err, data) => {
         if (err) {
             res.status(500).send({
                 message: err.message || 'Some error occured while add to cart',
