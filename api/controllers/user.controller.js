@@ -57,7 +57,6 @@ exports.login = async (req, res) => {
                 ...others,
                 accessToken,
             });
-            //     return res.json(others);
         }
     });
 };
@@ -154,7 +153,7 @@ exports.update = (req, res) => {
                 });
             }
         } else {
-            res.json(data);
+            res.status(201).json(data);
         }
     });
 };

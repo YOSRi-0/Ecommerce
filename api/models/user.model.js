@@ -59,7 +59,7 @@ User.updateById = (id, user, result) => {
         (err, res) => {
             if (err) {
                 console.log('error: ', err);
-                result(null, err);
+                result(err, null);
                 return;
             }
 
@@ -68,7 +68,7 @@ User.updateById = (id, user, result) => {
                 return;
             }
 
-            console.log('updated user: ', { id, ...user });
+            console.log('updated user: ', res);
             result(null, { id, ...user });
         }
     );

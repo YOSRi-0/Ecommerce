@@ -1,24 +1,26 @@
+const { verifyTokenAndAdmin } = require('./verifyToken.js');
+
 module.exports = (app) => {
-    const products = require("../controllers/product.controller.js");
+    const products = require('../controllers/product.controller.js');
 
     // Create a new Product
-    app.post("/products", products.create);
+    app.post('/products', verifyTokenAndAdmin, products.create);
 
     // Get one product
-    app.get("/products/:id", products.findOne);
+    app.get('/products/:id', products.findOne);
 
     // Get one product by category
-    app.get("/products/category/:id", products.findAllByCategory);
+    app.get('/products/category/:id', products.findAllByCategory);
 
     // Get all products
-    app.get("/products", products.findAll);
+    app.get('/products', products.findAll);
 
     // Update a product with id
-    app.put("/products/:id", products.update);
+    app.put('/products/:id', verifyTokenAndAdmin, products.update);
 
     // Delete a product with id
-    app.delete("/products/:id", products.delete);
+    app.delete('/products/:id', verifyTokenAndAdmin, products.delete);
 
     // Delete all products
-    app.delete("/products", products.deleteAll);
+    app.delete('/products', verifyTokenAndAdmin, products.deleteAll);
 };
