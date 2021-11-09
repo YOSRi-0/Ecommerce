@@ -16,8 +16,8 @@ User.create = (newUser, result) => {
             return;
         }
 
-        console.log('created user', { ...newUser });
-        result(null, { ...newUser });
+        console.log('created user', res);
+        result(null, res);
     });
 };
 
@@ -54,8 +54,8 @@ User.getAll = (result) => {
 
 User.updateById = (id, user, result) => {
     sql.query(
-        'UPDATE users SET email = ? , password = ? WHERE id_user  = ?',
-        [user.email, user.password, id],
+        'UPDATE users SET username = ?, email = ? , password = ? WHERE id_user  = ?',
+        [user.username, user.email, user.password, id],
         (err, res) => {
             if (err) {
                 console.log('error: ', err);

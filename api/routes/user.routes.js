@@ -1,3 +1,5 @@
+const { verifyTokenAndAuthorization } = require('./verifyToken.js');
+
 module.exports = (app) => {
     const users = require('../controllers/user.controller.js');
 
@@ -11,7 +13,7 @@ module.exports = (app) => {
     app.get('/users', users.findAll);
 
     // Update a user with username
-    app.put('/users/:id', users.update);
+    app.put('/users/:id', verifyTokenAndAuthorization, users.update);
 
     // Delete a user with username
     app.delete('/users/:id', users.delete);

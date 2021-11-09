@@ -22,7 +22,9 @@ exports.login = async (req, res) => {
     User.login(enteredUsername, (err, data) => {
         if (err) {
             if (err.kind === 'wrong credentials') {
-                res.status(401).json({ message: 'wrong credentials' });
+                res.status(401).json({
+                    message: 'wrong credentials',
+                });
             } else {
                 res.status(500).json({
                     message: err.message || 'error has occured',
@@ -37,17 +39,25 @@ exports.login = async (req, res) => {
             const originPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
             enteredPassword !== originPassword &&
-                res.status(401).json({ message: 'wrong credentials' });
+                res.status(401).json({
+                    message: 'wrong credentials',
+                });
             const accessToken = jwt.sign(
                 {
                     username: user.username,
                     isadmin: user.isadmin,
                 },
                 process.env.JWT_SEC,
-                { expiresIn: '1d' }
+                {
+                    expiresIn: '1d',
+                }
             );
             const { password, ...others } = user;
-            return res.json({ ...others, accessToken });
+            return res.json({
+                ...others,
+                accessToken,
+            });
+            //     return res.json(others);
         }
     });
 };
@@ -124,6 +134,14 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
     const newUser = req.body;
+
+    if (newUser.password) {
+        newUser.password = CryptoJS.AES.encrypt(
+            req.body.password,
+            process.env.PASS_SEC
+        ).toString();
+    }
+
     User.updateById(id, newUser, (err, data) => {
         if (err) {
             if (err.kind === 'not_found') {
@@ -156,7 +174,9 @@ exports.delete = (req, res) => {
                 });
             }
         } else {
-            res.json({ message: `User was deleted successfully` });
+            res.json({
+                message: `User was deleted successfully`,
+            });
         }
     });
 };
