@@ -2,14 +2,14 @@ module.exports = (app) => {
 	const cart = require("../controllers/cart.controller.js");
 	const { verifyTokenAndAuthorization } = require("./verifyToken");
 
+	// Add To cart
+	app.post("/cart/add", verifyTokenAndAuthorization, cart.addToCart);
+
 	// Create a new Cart
-	app.post("/cart", cart.create);
+	app.post("/cart/:id", verifyTokenAndAuthorization, cart.create);
 
 	// Get cart
 	app.get("/cart/:id", verifyTokenAndAuthorization, cart.findByUserId);
-
-	// Add To cart
-	app.post("/cart/add", verifyTokenAndAuthorization, cart.addToCart);
 
 	// Delete from cart
 	app.delete(
