@@ -1,17 +1,23 @@
-import "./App.css";
-import { Home } from "./pages/home/Home";
-import { NavBar } from "./components/navbar/NavBar";
-import { Announcement } from "./components/announcement/Announcement";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Footer } from "./components/footer/Footer";
-import { ProductsList } from "./pages/products/ProductsList";
-import { Product } from "./pages/products/Product";
-import { Newsletter } from "./components/newsletter/Newsletter";
-import { Register } from "./pages/register/Register";
-import { Login } from "./pages/login/Login";
-import { Cart } from "./pages/cart/Cart";
+import './App.css';
+import { Home } from './pages/home/Home';
+import { NavBar } from './components/navbar/NavBar';
+import { Announcement } from './components/announcement/Announcement';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+} from 'react-router-dom';
+import { Footer } from './components/footer/Footer';
+import { ProductsList } from './pages/products/ProductsList';
+import { Product } from './pages/products/Product';
+import { Newsletter } from './components/newsletter/Newsletter';
+import { Register } from './pages/register/Register';
+import { Login } from './pages/login/Login';
+import { Cart } from './pages/cart/Cart';
 
 function App() {
+    const user = true;
     return (
         <Router>
             <Announcement />
@@ -21,15 +27,15 @@ function App() {
                     <Home />
                 </Route>
                 <Route path="/login">
-                    <Login />
+                    {user ? <Redirect to="/" /> : <Login />}
                 </Route>
                 <Route path="/register">
-                    <Register />
+                    {user ? <Redirect to="/" /> : <Register />}
                 </Route>
                 <Route path="/products" exact>
                     <ProductsList />
                 </Route>
-                <Route path="/products/1">
+                <Route path="/products/:id">
                     <Product />
                 </Route>
                 <Route path="/cart">

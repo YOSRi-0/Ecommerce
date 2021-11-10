@@ -5,14 +5,15 @@ import { BiSearch } from 'react-icons/bi';
 import { Container, Image, Informations, Icon } from './ProductElements';
 
 export const Product = ({ product }) => {
+    const path = `/products/${product.id_product}`;
     return (
         <Container>
-            <Image src={product.img} />
+            <Image src={product.title} />
             <Informations>
                 <Icon>
                     <RiShoppingCart2Line />
                 </Icon>
-                <Icon>
+                <Icon to={path}>
                     <BiSearch />
                 </Icon>
                 <Icon>
