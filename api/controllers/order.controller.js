@@ -9,9 +9,9 @@ exports.create = (req, res) => {
 
 	// Create a order
 	const order = new Order({
-		username: req.body.username,
+		userId: req.body.userId,
 		address: req.body.address,
-		products: req.body.products,
+		productId: req.body.productId,
 		totalPrice: Number(req.body.totalPrice),
 		amount: Number(req.body.amount),
 		status: req.body.status,
