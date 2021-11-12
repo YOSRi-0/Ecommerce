@@ -19,10 +19,12 @@ import {
   BarsIcon,
   CartQuantity,
 } from "./NavBarElements";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { store } from "../../redux/store";
 
 export const NavBar = () => {
   const [toggleNav, setToggleNab] = useState(false);
+  const dispatch = useDispatch();
   const resetToggle = () => {
     setToggleNab(false);
   };
@@ -31,8 +33,18 @@ export const NavBar = () => {
   };
 
   const quantity = useSelector((state) => state.cart.quantity);
+  const isLogged = !!useSelector((state) => state.user.currentUser);
 
-  console.log(quantity);
+  const LOGOUT_ACTION = {
+    type: "LOGOUT",
+  };
+
+  const Logout = (e) => {
+    e.preventDefault();
+    store.dispatch(LOGOUT_ACTION);
+    resetToggle();
+  };
+
   return (
     <Container isopen={toggleNav}>
       <Wrapper>
@@ -57,12 +69,24 @@ export const NavBar = () => {
           </Hamburger>
         </Center>
         <Right isopen={toggleNav}>
-          <MenuItem to="/register" onClick={resetToggle}>
-            Register
-          </MenuItem>
-          <MenuItem to="/login" onClick={resetToggle}>
-            Login
-          </MenuItem>
+          {!isLogged && (
+            <MenuItem to="/register" onClick={resetToggle}>
+              Register
+            </MenuItem>
+          )}
+
+          {!isLogged && (
+            <MenuItem to="/login" onClick={resetToggle}>
+              Login
+            </MenuItem>
+          )}
+
+          {isLogged && (
+            <MenuItem to="/" onClick={Logout}>
+              logout
+            </MenuItem>
+          )}
+
           <CartContainer to="/cart" onClick={resetToggle}>
             <CartQuantity>{quantity}</CartQuantity>
             <RiShoppingCart2Line></RiShoppingCart2Line>
