@@ -11,6 +11,7 @@ exports.create = (req, res) => {
   const category = new Category({
     mainCategory: req.body.mainCategory,
     subCategory: req.body.subCategory,
+    image: req.body.image || null,
   });
 
   // Save category in the db
@@ -36,6 +37,7 @@ exports.update = (req, res) => {
   const category = new Category({
     mainCategory: req.body.mainCategory,
     subCategory: req.body.subCategory,
+    image: req.body.image || null,
   });
 
   const id = req.params.id;
