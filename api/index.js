@@ -15,6 +15,7 @@ require("./routes/product.routes.js")(app);
 require("./routes/cart.routes.js")(app);
 require("./routes/order.routes.js")(app);
 require("./routes/category.routes.js")(app);
+require("./routes/color.routes.js")(app);
 require("./routes/auth.routes.js")(app);
 require("./routes/stripe")(app);
 
