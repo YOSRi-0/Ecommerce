@@ -13,7 +13,7 @@ export const Categories = (props) => {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/categories/");
+        const res = await publicRequest.get("categories");
         setCategories(res.data);
       } catch (error) {
         console.log(error);

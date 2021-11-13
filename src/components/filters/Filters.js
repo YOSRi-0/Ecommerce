@@ -45,7 +45,7 @@ export const Filters = () => {
                 Color
               </Option>
               {colors.map((color) => (
-                <Option>{color}</Option>
+                <Option key={color.id_color}>{color.name}</Option>
               ))}
             </Select>
             <Select>
@@ -53,7 +53,7 @@ export const Filters = () => {
                 Size
               </Option>
               {sizes.map((size) => (
-                <Option>{size}</Option>
+                <Option key={size.id_size}>{size.name}</Option>
               ))}
             </Select>
           </Filter>
