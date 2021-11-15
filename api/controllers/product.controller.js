@@ -173,3 +173,24 @@ exports.deleteAll = (req, res) => {
       });
   });
 };
+
+// Filters
+exports.findProductsByFilter = (req, res) => {
+  const color = req.query.color;
+  const size = req.query.size;
+  Product.getProductsByFilter(color, size, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        return res.status(404).json({
+          message: `not found product for this color`,
+        });
+      } else {
+        return res.status(500).json({
+          message: err.message || "an error has occured",
+        });
+      }
+    } else {
+      return res.json(data);
+    }
+  });
+};

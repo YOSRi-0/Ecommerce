@@ -12,6 +12,9 @@ module.exports = (app) => {
   // Get product by category
   app.get("/category", products.findAllByCategory);
 
+  // Get product by category
+  app.get("/color", products.findProductsByFilter);
+
   // Get one product
   app.get("/products/:id", products.findOne);
 

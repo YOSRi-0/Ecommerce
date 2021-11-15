@@ -158,4 +158,38 @@ Product.removeAll = (result) => {
   });
 };
 
+// colors
+Product.getProductsByFilter = (color, size, result) => {
+  const sizeCondition =
+    size &&
+    `p.id_product = sp.id_product AND sp.id_size = s.id_size AND s.name = '${size}'`;
+  const colorCondition =
+    color &&
+    `p.id_product = cp.id_product AND cp.id_color = c.id_color AND c.name = '${color}'`;
+  const condition = colorCondition
+    ? sizeCondition
+      ? colorCondition + " AND " + sizeCondition
+      : colorCondition
+    : sizeCondition;
+
+  console.log(condition);
+  sql.query(
+    `SELECT DISTINCT p.* from products p, color_product cp, colors c, size_product sp, sizes s WHERE ${condition}`,
+    color,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+
+      if (res.length) {
+        console.log(`found products with color`, res);
+        result(null, res);
+        return;
+      }
+      result({ kind: "not_found" }, null);
+    }
+  );
+};
 module.exports = Product;
