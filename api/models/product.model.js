@@ -40,19 +40,43 @@ Product.findById = (id, result) => {
   });
 };
 
-Product.findAllByCategory = (categoryId, result) => {
+Product.findAllCategories = (result) => {
+  sql.query("SELECT * FROM categories", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log(`found products categories`, res);
+      result(null, res);
+      return;
+    }
+
+    result({ kind: "not_found" }, null);
+  });
+};
+
+Product.findAllByCategory = (category, result) => {
+  console.log(category);
+  const mainCondition = category.main_category
+    ? `categories.main_category = '${category.main_category}'`
+    : "";
+  const subCondition = category.submain_category
+    ? ` AND categories.submain_category = '${category.submain_category}'`
+    : "";
   sql.query(
-    "SELECT * FROM products WHERE id_category = ?",
-    categoryId,
+    `SELECT products.* from products, categories WHERE products.id_category = categories.id_category AND ${mainCondition} ${subCondition}`,
     (err, res) => {
       if (err) {
-        console.log("error: ", err);
+        console.log("Error: ", err);
         result(err, null);
         return;
       }
 
       if (res.length) {
-        console.log(`found products by category ${categoryId}`, res);
+        console.log(`found products by category `, res);
         result(null, res);
         return;
       }

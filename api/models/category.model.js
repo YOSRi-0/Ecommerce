@@ -1,8 +1,8 @@
 const sql = require("./db.js");
 
 const Category = function (category) {
-  this.main_category = category.mainCategory;
-  this.submain_category = category.subCategory;
+  this.main_category = category.main_category;
+  this.submain_category = category.submain_category;
   this.image = category.image;
 };
 

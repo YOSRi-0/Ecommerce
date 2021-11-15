@@ -1,3 +1,4 @@
+const Category = require("../models/category.model.js");
 const Product = require("../models/product.model.js");
 
 // Create and save new product
@@ -23,7 +24,7 @@ exports.create = (req, res) => {
     if (err) {
       res.status(500).json({
         message:
-          err.message || "some error occurred whime creating the product",
+          err.message || "some error occurred while creating the product",
       });
     } else {
       res.json(data);
@@ -37,7 +38,7 @@ exports.findAll = (req, res) => {
     if (err)
       res.status(500).json({
         message:
-          err.message || "some error occurred whime creating the product",
+          err.message || "some error occurred while creating the product",
       });
     else res.json(data);
   });
@@ -60,21 +61,47 @@ exports.findOne = (req, res) => {
   });
 };
 
-// Get products by category
-exports.findAllByCategory = (req, res) => {
-  const categoryId = req.params.id;
-  Product.findAllByCategory(Number(categoryId), (err, data) => {
+// Get products categories
+exports.findAllCategories = (req, res) => {
+  Product.findAllCategories((err, data) => {
     if (err) {
       if (err.kind === "nod_found") {
         res.status(404).json({
-          message: `not found product with category id${categoryId}`,
+          message: `not found product categories `,
         });
       } else {
         res.status(500).json({
-          message: "Error retrieving products with category id " + categoryId,
+          message: "Error retrieving products categories",
         });
       }
     } else res.json(data);
+  });
+};
+
+// Get product by category
+exports.findAllByCategory = (req, res) => {
+  if (!req.body) {
+    res.status(400).json({
+      message: "Content can not be empty",
+    });
+  }
+
+  const category = new Category(req.body);
+
+  Product.findAllByCategory(category, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        return res.status(404).json({
+          message: `not found product for this category`,
+        });
+      } else {
+        return res.status(500).json({
+          message: err.message || "an error has occured",
+        });
+      }
+    } else {
+      return res.json(data);
+    }
   });
 };
 
