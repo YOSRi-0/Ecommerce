@@ -80,13 +80,18 @@ exports.findAllCategories = (req, res) => {
 
 // Get product by category
 exports.findAllByCategory = (req, res) => {
-  if (!req.body) {
-    res.status(400).json({
-      message: "Content can not be empty",
-    });
-  }
+  // if (!req.body) {
+  //   res.status(400).json({
+  //     message: "Content can not be empty",
+  //   });
+  // }
 
-  const category = new Category(req.body);
+  const category = new Category({
+    main_category: req.query.main_category,
+    submain_category: req.query.submain_category,
+  });
+
+  //const category = new Category(req.body);
 
   Product.findAllByCategory(category, (err, data) => {
     if (err) {
