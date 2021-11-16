@@ -78,38 +78,6 @@ exports.findAllCategories = (req, res) => {
   });
 };
 
-// Get product by category
-exports.findAllByCategory = (req, res) => {
-  // if (!req.body) {
-  //   res.status(400).json({
-  //     message: "Content can not be empty",
-  //   });
-  // }
-
-  const category = new Category({
-    main_category: req.query.main_category,
-    submain_category: req.query.submain_category,
-  });
-
-  //const category = new Category(req.body);
-
-  Product.findAllByCategory(category, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        return res.status(404).json({
-          message: `not found product for this category`,
-        });
-      } else {
-        return res.status(500).json({
-          message: err.message || "an error has occured",
-        });
-      }
-    } else {
-      return res.json(data);
-    }
-  });
-};
-
 // Update a product by id
 exports.update = (req, res) => {
   if (!req.body) {
@@ -178,19 +146,27 @@ exports.deleteAll = (req, res) => {
 exports.findProductsByFilter = (req, res) => {
   const color = req.query.color;
   const size = req.query.size;
-  Product.getProductsByFilter(color, size, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        return res.status(404).json({
-          message: `not found product for this color`,
-        });
+  const main_category = req.query.main;
+  const submain_category = req.query.sub;
+  Product.getProductsByFilter(
+    color,
+    size,
+    main_category,
+    submain_category,
+    (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          return res.status(404).json({
+            message: `not found product for this color`,
+          });
+        } else {
+          return res.status(500).json({
+            message: err.message || "an error has occured",
+          });
+        }
       } else {
-        return res.status(500).json({
-          message: err.message || "an error has occured",
-        });
+        return res.json(data);
       }
-    } else {
-      return res.json(data);
     }
-  });
+  );
 };

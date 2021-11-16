@@ -58,34 +58,6 @@ Product.findAllCategories = (result) => {
   });
 };
 
-Product.findAllByCategory = (category, result) => {
-  console.log(category);
-  const mainCondition = category.main_category
-    ? `categories.main_category = '${category.main_category}'`
-    : "";
-  const subCondition = category.submain_category
-    ? ` AND categories.submain_category = '${category.submain_category}'`
-    : "";
-  sql.query(
-    `SELECT products.* from products, categories WHERE products.id_category = categories.id_category AND ${mainCondition} ${subCondition}`,
-    (err, res) => {
-      if (err) {
-        console.log("Error: ", err);
-        result(err, null);
-        return;
-      }
-
-      if (res.length) {
-        console.log(`found products by category `, res);
-        result(null, res);
-        return;
-      }
-
-      result({ kind: "not_found" }, null);
-    }
-  );
-};
-
 Product.getAll = (result) => {
   sql.query("SELECT * FROM products", (err, res) => {
     if (err) {
@@ -159,23 +131,50 @@ Product.removeAll = (result) => {
 };
 
 // colors
-Product.getProductsByFilter = (color, size, result) => {
+Product.getProductsByFilter = (
+  color,
+  size,
+  main_category,
+  submain_category,
+  result
+) => {
+  let condition = "";
   const sizeCondition =
     size &&
     `p.id_product = sp.id_product AND sp.id_size = s.id_size AND s.name = '${size}'`;
   const colorCondition =
     color &&
     `p.id_product = cp.id_product AND cp.id_color = c.id_color AND c.name = '${color}'`;
-  const condition = colorCondition
-    ? sizeCondition
-      ? colorCondition + " AND " + sizeCondition
+  const mainCondition = main_category
+    ? `p.id_category = cat.id_category AND cat.main_category = '${main_category}'`
+    : "";
+  const subCondition = submain_category
+    ? `p.id_category = cat.id_category AND cat.submain_category = '${submain_category}'`
+    : "";
+
+  condition += mainCondition || "";
+
+  condition += subCondition
+    ? condition.length > 0
+      ? ` AND ${subCondition}`
+      : subCondition
+    : "";
+
+  condition += sizeCondition
+    ? condition.length > 0
+      ? ` AND ${sizeCondition}`
+      : sizeCondition
+    : "";
+
+  condition += colorCondition
+    ? condition.length > 0
+      ? ` AND ${colorCondition}`
       : colorCondition
-    : sizeCondition;
+    : "";
 
   console.log(condition);
   sql.query(
-    `SELECT DISTINCT p.* from products p, color_product cp, colors c, size_product sp, sizes s WHERE ${condition}`,
-    color,
+    `SELECT DISTINCT p.* from products p,categories cat, color_product cp, colors c, size_product sp, sizes s WHERE ${condition}`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);

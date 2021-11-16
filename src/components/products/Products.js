@@ -41,7 +41,7 @@ export const Products = (props) => {
       }
     };
     getProducts();
-  }, []);
+  }, [gender, type]);
   return (
     <Container>
       <Title align={props.align}>{props.title}</Title>

@@ -10,10 +10,10 @@ module.exports = (app) => {
   app.get("/categories", products.findAllCategories);
 
   // Get product by category
-  app.get("/category", products.findAllByCategory);
+  //app.get("/category", products.findAllByCategory);
 
   // Get product by category
-  app.get("/color", products.findProductsByFilter);
+  app.get("/products/filter", products.findProductsByFilter);
 
   // Get one product
   app.get("/products/:id", products.findOne);
